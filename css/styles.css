@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+/* ==========================
+   1. RESET
+   ========================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+/* ==========================
+   2. DESIGN TOKENS
+   ========================== */
+   :root {
+    /* Color */
+    --color-accent: #4d1979;
+    --color-accent-strong: #321052;
+    --color-text: #172033;
+    --color-muted: #657186;
+    --color-border: #d9dfeb;
+    --color-bg: #f7f8fb;
+    --color-surface: #ffffff;
+    --color-surface-alt: #f1f5f9;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Spacing — a modular scale */
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --radius-md: 8px;
+    --space-xl: 2rem;
+    /* Typography */
+    --text-base: 1rem;
+    --text-h3: 1.25rem;
+    --text-h2: 1.5rem;
+    --text-h1: 2.25rem;
+    --leading-body: 1.6;
+    --leading-heading: 1.2;
+    --font-stack: 'Manrope', sans-serif;
+    --font-serif: 'Manrope', Georgia, serif; 
+    h1, h2, h3 {
+    font-family: var(--font-serif);
+    line-height: var(--leading-heading);
+}
+    /* Layout */
+    --page-width: 64rem;
+}
+
+/* ==========================
+   3. BASE ELEMENT STYLES
+   ========================== */
+   body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    font-family: var(--font-stack);
+    /* ...existing Lab 05 declarations... */
+}
+
+h1 { font-size: var(--text-h1); line-height: var(--leading-heading); }
+h2 { font-size: var(--text-h2); line-height: var(--leading-heading); }
+h3 { font-size: var(--text-h3); line-height: var(--leading-heading); }
+
+h1, h2, h3 { margin-bottom: var(--space-sm); }
+p { margin-bottom: var(--space-md); }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--color-accent); }
+ul { padding-left: var(--space-lg);}
+
+a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ==========================
+   4. LAYOUT
+   Breakpoints used in this file:
+     768px  — tablet and larger
+   (CSS variables cannot be used inside @media conditions,
+    so breakpoints are documented here instead of tokenized.)
+   ========================== */
+   body {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+}
+    header {
+        padding: var(--space-lg);
+        background-color: var(--color-surface-alt);
+        margin-bottom: var(--space-lg);
+    }
+ 
+section { margin-bottom: var(--space-xl); }
+
+/* ==========================
+5. Header
+    ========================== */
+
+/* ==========================
+6. Sections
+    ========================== */
+
+/* ==========================
+7. Forms
+    ========================== */
+label {
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    font: inherit;
+    margin-bottom: var(--space-md);
+}
+/* ==========================
+8. Buttons
+    ========================== */
+/* ==========================
+9. Search
+    ========================== */
+/* ==========================
+10. Cards
+    ========================== */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+}
+/* ==========================
+11. Footer
+    ========================== */
+/* ==========================
+12. Responsive
+    ========================== */
+
+    @media (min-width: 768px) {
+    .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    }
