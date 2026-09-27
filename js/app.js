@@ -2,6 +2,12 @@ let favorites = [];
 const form = document.getElementById('add-favorite-form');
 const favoritesList = document.getElementById('favorites-list');
 
+const searchInput = document.getElementById('search-input');
+const categoryFilter = document.getElementById('category-filter');
+
+searchInput.addEventListener('input', searchFavorites);
+categoryFilter.addEventListener('change', searchFavorites);
+
 console.log('app.js connected');
 let myFavorite = {
     name: 'La La Land Cafe on Camp Bowie',
@@ -57,13 +63,15 @@ function addFavorite(event) {
 
 form.addEventListener('submit', addFavorite);
 
-function displayFavorites() {
-    favoritesList.innerHTML = '';
-    if (favorites.length === 0) {
-        return;
-    }
+    function displayFavorites() {
+    searchInput.value = '';  
+    categoryFilter.value = 'all'; 
+    searchFavorites();
+}
     favorites.forEach(function(favorite) {
         const stars = '⭐'.repeat(favorite.rating);
+        filtered.forEach(function(favorite) {
+        const index = favorites.indexOf(favorite);
         favoritesList.innerHTML += `
             <div class="favorite-card">
                 <h3>${favorite.name}</h3>
@@ -71,8 +79,24 @@ function displayFavorites() {
                 <div class="favorite-rating">${stars} (${favorite.rating}/5)</div>
                 <p class="favorite-notes">${favorite.notes}</p>
                 <p class="favorite-date">Added: ${favorite.dateAdded}</p>
-            </div>`;
+                    <button class="btn-danger" onclick="deleteFavorite(${index})">Delete</button>
+                </div>`;
     });
-}
 
-displayFavorites();
+    function deleteFavorite(index) {
+    const favorite = favorites[index];
+    if (confirm(`Delete "${favorite.name}"?`)) {
+        favorites.splice(index, 1); 
+        searchFavorites();
+    }
+    const searchText = searchInput.value.toLowerCase().trim();
+const selectedCategory = categoryFilter.value;
+
+const filtered = favorites.filter(function(favorite) {
+    const matchesSearch = searchText === '' ||
+        favorite.name.toLowerCase().includes(searchText) ||
+        favorite.notes.toLowerCase().includes(searchText);
+    const matchesCategory = selectedCategory === 'all' ||
+        favorite.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+});

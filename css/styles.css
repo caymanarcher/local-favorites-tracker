@@ -51,6 +51,9 @@ img {
 }
     /* Layout */
     --page-width: 64rem;
+    /* DESIGN TOKENS, with your other colors */
+--color-danger: #4d1979;
+
 }
 
 /* ==========================
@@ -127,6 +130,11 @@ textarea {
 /* ==========================
 8. Buttons
     ========================== */
+
+.btn-danger {
+    background-color: var(--color-danger);
+    color: var(--color-surface);
+}
 /* ==========================
 9. Search
     ========================== */
