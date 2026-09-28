@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Favorites Tracker</title>
     <link rel="stylesheet" href="css/styles.css">
+ 
+ 
+ 
+    localStorage.setItem('localFavorites', JSON.stringify(favorites));
+const saved = localStorage.getItem('localFavorites');
+if (saved) { favorites = JSON.parse(saved); }
+
+
+
+
 </head>
 <body>
    <header>

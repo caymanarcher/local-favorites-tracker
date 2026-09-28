@@ -57,20 +57,24 @@ function addFavorite(event) {
     };
 
     favorites.push(newFavorite);
+    saveFavorites();
     form.reset();
     displayFavorites();
 }
 
 form.addEventListener('submit', addFavorite);
 
+
+    function searchFavorites() {
     function displayFavorites() {
     searchInput.value = '';  
     categoryFilter.value = 'all'; 
     searchFavorites();
 }
-    favorites.forEach(function(favorite) {
+    favoritesList.innerHTML = '';
+
+    filtered.forEach(function(favorite) {
         const stars = '⭐'.repeat(favorite.rating);
-        filtered.forEach(function(favorite) {
         const index = favorites.indexOf(favorite);
         favoritesList.innerHTML += `
             <div class="favorite-card">
@@ -82,12 +86,14 @@ form.addEventListener('submit', addFavorite);
                     <button class="btn-danger" onclick="deleteFavorite(${index})">Delete</button>
                 </div>`;
     });
-
-    function deleteFavorite(index) {
+}
+function deleteFavorite(index) {
     const favorite = favorites[index];
     if (confirm(`Delete "${favorite.name}"?`)) {
         favorites.splice(index, 1); 
+        saveFavorites(); 
         searchFavorites();
+    }
     }
     const searchText = searchInput.value.toLowerCase().trim();
 const selectedCategory = categoryFilter.value;
@@ -99,4 +105,31 @@ const filtered = favorites.filter(function(favorite) {
     const matchesCategory = selectedCategory === 'all' ||
         favorite.category === selectedCategory;
     return matchesSearch && matchesCategory;
-});
+})
+
+localStorage.setItem('localFavorites', JSON.stringify(favorites));
+const saved = localStorage.getItem('localFavorites');
+if (saved) { favorites = JSON.parse(saved); };
+
+function saveFavorites() {
+    try {
+        localStorage.setItem('localFavorites', JSON.stringify(favorites));
+    } catch (error) {
+        alert('Unable to save favorites. Storage may be disabled.');
+    }
+}
+function loadFavorites() {
+    try {
+        const saved = localStorage.getItem('localFavorites');
+        if (saved) {
+            favorites = JSON.parse(saved);
+        } else {
+            favorites = [];
+        }
+    } catch (error) {
+        favorites = [];
+    }
+}
+
+loadFavorites();
+displayFavorites();
