@@ -20,10 +20,10 @@ console.log(myFavorite.name);
 let displayText = myFavorite.name + ' - Rating: ' + myFavorite.rating + '/5';
 
 let today = new Date().toLocaleDateString();
-console.log(today); // 9/17/2026
-console.log(myFavorite); // click the arrow to expand it
-console.log(typeof myFavorite.name); // string
-console.log(typeof myFavorite.rating); // number
+console.log(today); 
+console.log(myFavorite); 
+console.log(typeof myFavorite.name);
+console.log(typeof myFavorite.rating); 
 
 let placeName = 'La La Land Cafe';
 let rating = 5;
@@ -48,6 +48,7 @@ function addFavorite(event) {
         alert('Please fill in name and category!');
         return;
     }
+
     const newFavorite = {
         name: name,
         category: category,
@@ -65,17 +66,15 @@ function addFavorite(event) {
 form.addEventListener('submit', addFavorite);
 
 
-    function searchFavorites() {
-    function displayFavorites() {
-    searchInput.value = '';  
+function displayFavorites(filtered) {
+    searchInput.value = ''; 
     categoryFilter.value = 'all'; 
     searchFavorites();
-}
-    favoritesList.innerHTML = '';
 
+    favoritesList.innerHTML = '';
     filtered.forEach(function(favorite) {
-        const stars = '⭐'.repeat(favorite.rating);
-        const index = favorites.indexOf(favorite);
+            const index = favorites.indexOf(favorite);
+            const stars = '⭐'.repeat(favorite.rating);
         favoritesList.innerHTML += `
             <div class="favorite-card">
                 <h3>${favorite.name}</h3>
@@ -83,33 +82,34 @@ form.addEventListener('submit', addFavorite);
                 <div class="favorite-rating">${stars} (${favorite.rating}/5)</div>
                 <p class="favorite-notes">${favorite.notes}</p>
                 <p class="favorite-date">Added: ${favorite.dateAdded}</p>
-                    <button class="btn-danger" onclick="deleteFavorite(${index})">Delete</button>
+                        <button class="btn-danger" onclick="deleteFavorite(${index})">Delete</button>
                 </div>`;
     });
 }
+
 function deleteFavorite(index) {
     const favorite = favorites[index];
     if (confirm(`Delete "${favorite.name}"?`)) {
         favorites.splice(index, 1); 
-        saveFavorites(); 
         searchFavorites();
     }
-    }
-    const searchText = searchInput.value.toLowerCase().trim();
-const selectedCategory = categoryFilter.value;
+}
 
-const filtered = favorites.filter(function(favorite) {
-    const matchesSearch = searchText === '' ||
-        favorite.name.toLowerCase().includes(searchText) ||
-        favorite.notes.toLowerCase().includes(searchText);
-    const matchesCategory = selectedCategory === 'all' ||
-        favorite.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-})
 
-localStorage.setItem('localFavorites', JSON.stringify(favorites));
-const saved = localStorage.getItem('localFavorites');
-if (saved) { favorites = JSON.parse(saved); };
+function searchFavorites() {
+            const searchText = searchInput.value.toLowerCase().trim();
+            const selectedCategory = categoryFilter.value;
+
+            const filtered = favorites.filter(function(favorite) {
+                 const matchesSearch = searchText === '' ||
+                        favorite.name.toLowerCase().includes(searchText) ||
+                        favorite.notes.toLowerCase().includes(searchText);
+            const matchesCategory = selectedCategory === 'all' ||
+                 favorite.category === selectedCategory;
+                return matchesSearch && matchesCategory;
+            });
+                        displayFavorites(filtered);
+        }
 
 function saveFavorites() {
     try {
