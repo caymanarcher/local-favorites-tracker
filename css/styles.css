@@ -119,14 +119,6 @@ label {
     display: block;
     margin-bottom: var(--space-sm);
 }
-
-input,
-select,
-textarea {
-    width: 100%;
-    font: inherit;
-    margin-bottom: var(--space-md);
-}
 input,
 select,
 textarea {

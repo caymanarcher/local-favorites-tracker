@@ -9,34 +9,36 @@ searchInput.addEventListener('input', searchFavorites);
 categoryFilter.addEventListener('change', searchFavorites);
 
 console.log('app.js connected');
-let myFavorite = {
-    name: 'La La Land Cafe on Camp Bowie',
-    category: 'coffee',
-    rating: 5,
-    notes: 'Delicious coffee and amazing toasts',
-    dateAdded: 'September 2026'
-};
-console.log(myFavorite.name);
-let displayText = myFavorite.name + ' - Rating: ' + myFavorite.rating + '/5';
 
-let today = new Date().toLocaleDateString();
-console.log(today); 
-console.log(myFavorite); 
-console.log(typeof myFavorite.name);
-console.log(typeof myFavorite.rating); 
+// Practice Code:
+// let myFavorite = {
+//     name: 'La La Land Cafe on Camp Bowie',
+//     category: 'coffee',
+//     rating: 5,
+//     notes: 'Delicious coffee and amazing toasts',
+//     dateAdded: 'September 2026'
+// };
+// console.log(myFavorite.name);
+// let displayText = myFavorite.name + ' - Rating: ' + myFavorite.rating + '/5';
 
-let placeName = 'La La Land Cafe';
-let rating = 5;
-console.log(placeName + ' - ' + rating + '/5');
-console.log('⭐'.repeat(rating) + ' ' + placeName);
+// let today = new Date().toLocaleDateString();
+// console.log(today); 
+// console.log(myFavorite); 
+// console.log(typeof myFavorite.name);
+// console.log(typeof myFavorite.rating); 
 
-function greetFavorite(placeName, rating) {
-    console.log(placeName + ' has ' + rating + ' stars!');
-}
-greetFavorite('La La Land', 5);
+// let placeName = 'La La Land Cafe';
+// let rating = 5;
+// console.log(placeName + ' - ' + rating + '/5');
+// console.log('⭐'.repeat(rating) + ' ' + placeName);
 
-const nameInput = document.getElementById('name');
-console.log(nameInput.value); 
+// function greetFavorite(placeName, rating) {
+//     console.log(placeName + ' has ' + rating + ' stars!');
+// }
+// greetFavorite('La La Land', 5);
+
+// const nameInput = document.getElementById('name');
+// console.log(nameInput.value); 
 
 function addFavorite(event) {
     event.preventDefault();
@@ -60,17 +62,13 @@ function addFavorite(event) {
     favorites.push(newFavorite);
     saveFavorites();
     form.reset();
-    displayFavorites();
+    searchFavorites();
 }
 
 form.addEventListener('submit', addFavorite);
 
 
 function displayFavorites(filtered) {
-    searchInput.value = ''; 
-    categoryFilter.value = 'all'; 
-    searchFavorites();
-
     favoritesList.innerHTML = '';
     filtered.forEach(function(favorite) {
             const index = favorites.indexOf(favorite);
@@ -91,6 +89,7 @@ function deleteFavorite(index) {
     const favorite = favorites[index];
     if (confirm(`Delete "${favorite.name}"?`)) {
         favorites.splice(index, 1); 
+        saveFavorites();
         searchFavorites();
     }
 }
@@ -132,4 +131,4 @@ function loadFavorites() {
 }
 
 loadFavorites();
-displayFavorites();
+searchFavorites();
