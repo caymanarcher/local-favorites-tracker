@@ -45,14 +45,10 @@ img {
     --leading-heading: 1.2;
     --font-stack: 'Manrope', sans-serif;
     --font-serif: 'Manrope', Georgia, serif; 
-    h1, h2, h3 {
-    font-family: var(--font-serif);
-    line-height: var(--leading-heading);
-}
     /* Layout */
     --page-width: 64rem;
     /* DESIGN TOKENS, with your other colors */
---color-danger: #ff1493;
+--color-danger: #c00068;
 
 }
 
@@ -107,6 +103,15 @@ section { margin-bottom: var(--space-xl); }
 /* ==========================
 5. Header
     ========================== */
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    nav a:hover { 
+        color: var(--color-accent); 
+    }
 
 /* ==========================
 6. Sections
@@ -176,16 +181,6 @@ button {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
 }
-
-nav a {
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-    nav a:hover { 
-        color: var(--color-accent); 
-    }
 
 /* ==========================
 11. Footer
