@@ -1,1 +1,2 @@
 # local-favorites-tracker
+This project was built for tracking and organizing my favorite coffee shops, restaurants, and dessert places around Fort Worth. It gives a rating to each place and a description so that people, including myself, can explore new places or return to old ones! I used JavaScript and HTML to build this website, and it lives at https://caymanarcher.github.io/local-favorites-tracker/. Thank you for using my favorites tracker! 
