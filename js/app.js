@@ -47,7 +47,7 @@ function addFavorite(event) {
     const category = document.getElementById('category').value;
 
     if (!name || !category) {
-        alert('Please fill in name and category!');
+        alert('Please fill out name and category first!');
         return;
     }
 

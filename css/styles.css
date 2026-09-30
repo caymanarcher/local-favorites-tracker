@@ -21,15 +21,15 @@ img {
    ========================== */
    :root {
     /* Color */
-    --color-accent: #4d1979;
-    --color-accent-strong: #321052;
-    --color-text: #172033;
-    --color-muted: #657186;
-    --color-border: #d9dfeb;
-    --color-bg: #f7f8fb;
+    --color-accent: #ff1493;
+    --color-accent-strong: #c00068;
+    --color-text: #38251F;
+    --color-muted: #887066;
+    --color-border: #F1DCD2;
+    --color-bg: #FFFAF6;
     --color-surface: #ffffff;
-    --color-surface-alt: #f1f5f9;
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --color-surface-alt: #FCECE3;
+    --shadow-sm: 0 2px 4px rgba(100, 55, 35, 0.09);
     /* Spacing — a modular scale */
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -52,7 +52,7 @@ img {
     /* Layout */
     --page-width: 64rem;
     /* DESIGN TOKENS, with your other colors */
---color-danger: #4d1979;
+--color-danger: #ff1493;
 
 }
 
@@ -176,6 +176,16 @@ button {
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
 }
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    nav a:hover { 
+        color: var(--color-accent); 
+    }
 
 /* ==========================
 11. Footer
